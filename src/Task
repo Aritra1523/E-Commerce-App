@@ -1,0 +1,44 @@
+https://final-assesment-seven.vercel.app/
+
+
+1. Create 3 folder i)Components,ii)Page,iii)custom hook,iv)api
+
+components->navbar,footer
+
+pages->productPage,cartpage
+
+custom hook->IncrementButtom,DecrementButtom,DeleteButtom,AddButtom,RemoveButtom
+
+api->baseurl,endpoints
+
+
+
+src/
+│
+├── components/
+│     ├── Navbar.jsx
+│     └── Footer.jsx
+│
+├── pages/
+│     ├── ProductPage.jsx
+│     └── CartPage.jsx
+│
+├── hooks/
+│     ├── useIncrement.js
+│     ├── useDecrement.js
+│     ├── useDelete.js
+│     ├── useAdd.js
+│     └── useRemove.js
+│
+├── api/
+│     ├── baseUrl.js
+│     └── endpoints.js
+│
+├── App.jsx
+└── main.jsx
+
+
+
+
+
+made by aritra ta h3 te ekta valo design ache sudhu lekha ta niche ante hbe

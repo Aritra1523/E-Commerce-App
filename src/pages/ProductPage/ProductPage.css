@@ -1,0 +1,122 @@
+@reference "tailwindcss";
+
+.products-container{
+  @apply px-6 py-8;
+}
+
+.products-grid{
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8;
+}
+
+/* CARD BASE */
+.product-card{
+  @apply rounded-2xl shadow-md overflow-hidden
+  hover:shadow-2xl transition duration-300 hover:-translate-y-2;
+}
+
+/* DARK MODE */
+.product-card-dark{
+  @apply bg-[#111c30];
+}
+
+/* LIGHT MODE */
+.product-card-light{
+  @apply bg-white;
+}
+
+.product-image{
+  @apply w-full h-56 object-cover;
+}
+
+.product-content{
+  @apply p-5 flex flex-col gap-4;
+}
+
+/* TITLE */
+.product-title{
+  @apply text-xl font-bold;
+}
+
+.title-dark{
+  @apply text-white;
+}
+
+.title-light{
+  @apply text-zinc-800;
+}
+
+.product-price{
+  @apply text-green-600 text-lg font-semibold;
+}
+
+.add-btn{
+  @apply bg-green-600 text-white py-3 rounded-xl hover:bg-green-700 transition font-medium;
+}
+
+.empty-box{
+  @apply flex items-center justify-center h-[60vh];
+}
+
+.empty-box h2{
+  @apply text-3xl font-bold text-zinc-500;
+}
+.cart-controls {
+  @apply flex items-center justify-center gap-3 mt-4;
+}
+
+.qty-btn {
+  @apply w-10 h-10
+  flex items-center justify-center
+  rounded-lg
+  bg-green-500
+  text-white
+  text-xl font-bold
+  hover:bg-green-600
+  transition;
+}
+
+.qty-count {
+  @apply min-w-[30px]
+  text-center
+  text-lg font-bold;
+}
+
+.remove-btn {
+  @apply px-4 py-2
+  rounded-lg
+  bg-red-500
+  text-white
+  text-sm font-medium
+  hover:bg-red-600
+  transition;
+}
+/* WRAPPER */
+.empty-wrapper {
+  @apply flex flex-col items-center justify-center min-h-[70vh] transition-all duration-300 bg-gray-50 text-black;
+}
+
+.empty-wrapper.dark {
+  @apply bg-gray-900 text-white;
+}
+
+/* CARD */
+.empty-card {
+  @apply flex flex-col items-center p-10 rounded-2xl shadow-md bg-white;
+}
+
+.empty-card.dark-card {
+  @apply bg-gray-800;
+}
+
+/* IMAGE */
+.empty-img {
+  @apply w-44 h-44 object-contain mb-5;
+}
+
+/* TITLE */
+.empty-title {
+  @apply text-2xl font-bold;
+}
+
+
+

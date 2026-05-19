@@ -1,0 +1,277 @@
+@reference "tailwindcss";
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  @apply mt-20 border-t transition-all duration-300;
+}
+
+/* DARK MODE */
+
+.footer-dark {
+  @apply bg-slate-950 text-white border-slate-800;
+}
+
+/* LIGHT MODE */
+
+.footer-light {
+  @apply bg-white text-black border-zinc-300;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.footer-container {
+  @apply max-w-7xl mx-auto px-6 lg:px-8 py-20 grid gap-16;
+}
+
+/* MOBILE */
+
+.footer-container {
+  grid-template-columns: 1fr;
+}
+
+/* TABLET */
+
+@media (min-width: 768px) {
+  .footer-container {
+    grid-template-columns:
+      1.5fr 1fr 1fr;
+  }
+}
+
+/* DESKTOP */
+
+@media (min-width: 1024px) {
+  .footer-container {
+    grid-template-columns:
+      2fr 1fr 1fr 1.5fr;
+  }
+}
+
+/* =========================
+   COLUMN
+========================= */
+
+.footer-container>div {
+  @apply flex flex-col;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.footer-logo {
+  @apply text-4xl font-black tracking-tight bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.footer-description {
+  @apply mt-6 leading-8 text-sm max-w-md;
+}
+
+/* DARK DESCRIPTION */
+
+.footer-dark .footer-description {
+  @apply text-slate-400;
+}
+
+/* LIGHT DESCRIPTION */
+
+.footer-light .footer-description {
+  @apply text-zinc-600;
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.footer-title {
+  @apply text-lg font-bold mb-6 tracking-wide;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+.footer-links {
+  @apply flex flex-col gap-4;
+}
+
+.footer-link {
+  @apply text-sm transition-all duration-300 hover:text-green-500 hover:translate-x-1 inline-block;
+}
+
+/* DARK LINKS */
+
+.footer-dark .footer-link {
+  @apply text-slate-400;
+}
+
+/* LIGHT LINKS */
+
+.footer-light .footer-link {
+  @apply text-zinc-600;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+
+.footer-newsletter-text {
+  @apply mb-5;
+}
+
+.footer-newsletter {
+  @apply flex flex-col gap-4;
+}
+
+/* INPUT */
+
+.footer-input {
+  @apply h-12 px-5 rounded-2xl border text-sm outline-none transition-all duration-300 focus:border-green-500 focus:ring-4 focus:ring-green-500/10;
+}
+
+/* DARK INPUT */
+
+.footer-dark .footer-input {
+  @apply bg-slate-900 border-slate-700 text-white placeholder:text-slate-500;
+}
+
+/* LIGHT INPUT */
+
+.footer-light .footer-input {
+  @apply bg-zinc-100 border-zinc-300 text-black placeholder:text-zinc-500;
+}
+
+/* BUTTON */
+
+.footer-button {
+  @apply h-12 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-semibold transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-green-500/20;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.footer-bottom {
+  @apply border-t;
+}
+
+/* DARK */
+
+.footer-dark .footer-bottom {
+  @apply border-slate-800;
+}
+
+/* LIGHT */
+
+.footer-light .footer-bottom {
+  @apply border-zinc-300;
+}
+
+.footer-bottom-container {
+  @apply max-w-7xl mx-auto px-6 lg:px-8 py-7
+  flex flex-col  items-center justify-center gap-6;
+}
+
+/* COPYRIGHT */
+
+.footer-bottom-container p {
+  @apply text-sm;
+}
+
+/* DARK */
+
+.footer-dark .footer-bottom-container p {
+  @apply text-slate-500;
+}
+
+/* LIGHT */
+
+.footer-light .footer-bottom-container p {
+  @apply text-zinc-500;
+}
+
+.footer-credit {
+  @apply w-full text-center mt-3 text-sm md:text-base font-medium
+  text-zinc-500;
+  animation: fadeUp 1s ease-in-out;
+}
+
+/* Heart beat animation */
+.heart {
+  display: inline-block;
+  animation: heartbeat 1.2s infinite;
+}
+
+/* Fade up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heart beat */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.3);
+  }
+}
+
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .footer-container {
+    @apply text-center gap-12;
+  }
+
+  .footer-description {
+    @apply mx-auto;
+  }
+
+  .footer-socials {
+    @apply justify-center;
+  }
+
+  .footer-newsletter {
+    @apply max-w-sm mx-auto;
+  }
+
+}
+
+
+
+@media (min-width: 1280px) {
+
+  .footer-container {
+    @apply py-24;
+  }
+
+}

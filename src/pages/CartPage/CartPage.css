@@ -1,0 +1,193 @@
+@reference "tailwindcss";
+
+/* PAGE */
+
+.cart-page {
+  @apply min-h-screen p-6;
+}
+
+.cart-dark {
+  @apply bg-[#071226] text-white;
+}
+
+.cart-light {
+  @apply bg-zinc-100 text-black;
+}
+
+/* LAYOUT */
+
+.cart-layout{
+  @apply grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8;
+}
+
+/* SECTION BASE */
+
+.cart-section,
+.summary-section{
+  @apply rounded-3xl p-6 shadow-2xl;
+}
+
+/* DARK */
+
+.section-dark{
+  @apply bg-[#111c30];
+}
+
+/* LIGHT */
+
+.section-light{
+  @apply bg-white;
+}
+
+/* HEADINGS */
+
+.cart-heading,
+.summary-title{
+  @apply text-3xl font-bold mb-8;
+}
+
+/* ITEMS */
+
+.cart-item{
+  @apply flex flex-col md:flex-row
+  items-center justify-between
+  gap-6 rounded-2xl p-5 mb-5;
+}
+
+/* DARK ITEM */
+
+.item-dark{
+  @apply bg-[#243248];
+}
+
+/* LIGHT ITEM */
+
+.item-light{
+  @apply bg-zinc-100;
+}
+
+/* LEFT */
+
+.cart-left{
+  @apply flex items-center gap-5 w-full;
+}
+
+.cart-image{
+  @apply w-20 h-20 object-cover rounded-xl bg-white p-2;
+}
+
+/* TITLE */
+
+.cart-title{
+  @apply text-2xl font-semibold;
+}
+
+.cart-subtitle{
+  @apply text-zinc-400 mt-1;
+}
+
+/* RIGHT */
+
+.cart-right{
+  @apply flex items-center gap-6;
+}
+
+/* QUANTITY */
+
+.quantity-box{
+  @apply flex items-center rounded-xl overflow-hidden;
+}
+
+.qty-btn{
+  @apply px-5 py-3 text-xl transition;
+}
+
+.qty-value{
+  @apply px-6 text-lg font-bold;
+}
+
+/* PRICE */
+
+.item-price{
+  @apply text-green-400 text-2xl font-bold;
+}
+
+/* DELETE */
+
+.delete-btn{
+  @apply text-red-500 text-2xl hover:scale-110 transition;
+}
+
+/* BUTTON */
+
+.undo-btn{
+  @apply w-full mt-10 border rounded-xl py-4 transition;
+}
+
+/* COUPON */
+
+.coupon-section{
+  @apply mb-8;
+}
+
+.coupon-box{
+  @apply flex flex-wrap gap-3;
+}
+
+.coupon-btn {
+  @apply bg-white text-black px-4 py-2 rounded-lg
+  font-medium hover:bg-zinc-200
+  transition cursor-pointer;
+}
+
+.active-coupon {
+  @apply bg-green-500 text-white
+  hover:bg-green-600 scale-105;
+}
+
+/* SUMMARY */
+
+.summary-details{
+  @apply border-y border-zinc-700 py-5 flex flex-col gap-5;
+}
+
+.summary-row{
+  @apply flex justify-between text-lg;
+}
+
+.total-row{
+  @apply items-center;
+}
+
+.total-row h2{
+  @apply text-green-400 text-4xl font-bold;
+}
+
+/* DISCOUNT */
+
+.discount-box{
+  @apply mt-6 border border-blue-700 rounded-xl p-4 text-blue-300;
+}
+
+/* CHECKOUT */
+
+.checkout-btn{
+  @apply w-full bg-green-600 hover:bg-green-700
+  transition text-white py-4 rounded-xl
+  text-xl font-bold mt-6;
+}
+.empty-cart{
+  @apply h-[80vh] flex flex-col justify-center items-center text-center;
+}
+
+.empty-cart-img{
+  @apply w-[220px] mb-5;
+}
+
+.cart-heading{
+  @apply text-[32px] font-bold mb-2;
+}
+
+.empty-text{
+  @apply text-[18px] text-gray-500;
+}
