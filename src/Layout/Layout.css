@@ -1,0 +1,30 @@
+.hero-banner {
+  width: 100%;
+  background: #0f172a; /* dark fallback like your navbar */
+  padding: 10px 0;
+}
+
+/* 🔥 MAIN FIX: proper crop + center focus */
+.hero-img {
+  width: min(1200px, 95%);
+  margin: 0 auto;
+  display: block;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-img {
+    height: 280px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-img {
+    height: 180px;
+    border-radius: 8px;
+  }
+}

@@ -6,6 +6,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import ProductPage from "./pages/ProductPage/ProductPage"
 import Footer from "./components/Footer/Footer"
 import Navbar from "./components/Navbar/Navbar";
+import Layout from "./Layout/Layout";
 function App() {
   const {theme}=useContext(ThemeContext)
   return (
@@ -26,13 +27,14 @@ function App() {
       }}
     >
       <BrowserRouter>
-      <Navbar/>
+     
         <Routes>
-          <Route path="/" element={<ProductPage/>} />
+          <Route path="/" element={
+           <Layout><ProductPage/></Layout> } />
           <Route path="/cart" element={<CartPage/>} />
          
         </Routes>
-         <Footer/>
+       
       </BrowserRouter>
      
     </div>

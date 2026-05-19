@@ -24,6 +24,7 @@ const ProductPage = () => {
   };
   return (
     <>
+    
       <div className="products-container">
         {filterData.length === 0 ? (
         <div className={`empty-wrapper ${theme === "dark" ? "dark" : "light"}`}>
