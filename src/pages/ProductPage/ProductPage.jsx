@@ -16,7 +16,8 @@ const ProductPage = () => {
     handlePrice,
     handleIncrement,
     handleDecrement,
-    handleRemove,cart
+    handleRemove,
+    cart,
   } = useContext(CartContext);
   const { theme } = useContext(ThemeContext);
   const getCartItem = (id) => {
@@ -24,17 +25,19 @@ const ProductPage = () => {
   };
   return (
     <>
-    
       <div className="products-container">
         {filterData.length === 0 ? (
-        <div className={`empty-wrapper ${theme === "dark" ? "dark" : "light"}`}>
-      <div className={`empty-card ${theme === "dark" ? "dark-card" : ""}`}>
-        <img src="/emoji.png" alt="No items" className="empty-img" />
+          <div
+            className={`empty-wrapper ${theme === "dark" ? "dark" : "light"}`}
+          >
+            <div
+              className={`empty-card ${theme === "dark" ? "dark-card" : ""}`}
+            >
+              <img src="/emoji.png" alt="No items" className="empty-img" />
 
-        <h2 className="empty-title">No Item Found</h2>
-
-      </div>
-    </div>
+              <h2 className="empty-title">No Item Found</h2>
+            </div>
+          </div>
         ) : (
           <div className="products-grid">
             {filterData.map((item) => {
@@ -64,7 +67,6 @@ const ProductPage = () => {
 
                     <p className="product-price">${item.price}</p>
 
-
                     {getCartItem(item.id) ? (
                       <div className="cart-controls">
                         <button
@@ -75,7 +77,7 @@ const ProductPage = () => {
                         </button>
 
                         <span className="qty-count">
-                          {getCartItem(item.id).quatity}
+                          {getCartItem(item.id).quantity}
                         </span>
 
                         <button

@@ -1,161 +1,157 @@
-import { useEffect, useState } from "react";
-import products from "../data/products";
+import { useEffect, useReducer } from "react";
+
 import Swal from "sweetalert2";
+
+import {
+  cartReducer,
+  initialState,
+} from "../reducer/cartReducer";
+
+import {
+  addItem,
+  increment,
+  decrement,
+  removeItem,
+  search,
+  filterType,
+  sortPrice,
+  applyCoupon,
+} from "../actions/cartActios";
+
 export const useCart = () => {
-    const [cart, setCart] = useState(() => {
-        const saveCart = localStorage.getItem("cart");
-        return saveCart ? JSON.parse(saveCart) : [];
+
+  const [state, dispatch] = useReducer(
+    cartReducer,
+    initialState
+  );
+
+  // LOCAL STORAGE
+  useEffect(() => {
+
+    localStorage.setItem(
+      "cart",
+      JSON.stringify(state.cart)
+    );
+
+  }, [state.cart]);
+
+  // ADD ITEM
+  const handleAdd = (item) => {
+
+    const existItem = state.cart.find(
+      (cartItem) => cartItem.id === item.id
+    );
+
+    if (existItem) {
+
+      Swal.fire({
+        title: "Already Added!",
+        text: "Item already exists",
+        icon: "warning",
+      });
+
+      return;
+    }
+
+    dispatch(
+      addItem({
+        ...item,
+        quantity: 1,
+      })
+    );
+
+    Swal.fire({
+      title: "Success!",
+      text: "Item added successfully",
+      icon: "success",
+      timer: 1500,
     });
-    const [filterData, setFilterData] = useState(products)
-    const [offerPrice, setOfferPrice] = useState(0)
-    const [activeCoupon, setActiveCoupon] =
-        useState(null);
-    JSON.parse(localStorage.getItem("cartItems"))
-    const handleAdd = (item) => {
-        const existItem = cart.find((ClickItem) => ClickItem.id === item.id);
-        if (existItem) {
-            Swal.fire({
-                title: "Already Added!",
-                text: "Item is already added to cart",
-                icon: "warning",
-            });
-            return
-        }
-        setCart((prev) => [
-            ...prev, {
-                ...item, quatity: 1
-            }
-        ]
-        )
+  };
+
+  // REMOVE ITEM
+  const handleRemove = (id) => {
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to remove this item?",
+      icon: "warning",
+      showCancelButton: true,
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+
+        dispatch(removeItem(id));
+
         Swal.fire({
-            title: "Success!",
-            text: "Item added to cart!",
-            icon: "success",
-            timer: 2000,
+          title: "Deleted!",
+          text: "Item removed successfully",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
         });
+      }
+    });
+  };
 
-    };
-    useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart))
-    }, [cart])
-    // console.log(cart)
+  // TOTAL PRICE
+  const Totalprice = state.cart.reduce(
+    (total, item) =>
+      total + item.price * item.quantity,
+    0
+  );
 
+  // TOTAL ITEMS
+  const totalItems = state.cart.reduce(
+    (acc, item) =>
+      acc + item.quantity,
+    0
+  );
 
-    const handleIncrement = (id) => {
+  // PAYABLE AMOUNT (Total Price)
+  const PayBleAmount =
+    Totalprice - state.offerPrice;
 
-        setCart((prev) => prev.map((item) => {
-            return (
-                item.id === id
-                    ? { ...item, quatity: item.quatity + 1 } : item
-            )
+  // APPLY DISCOUNT
+  const handleDiscount = (coupon) => {
 
-        }))
-    };
-    const handleDecrement = (id) => {
-        const update = cart.map((item) => {
-            if (item.id === id && item.quatity > 0) {
-                return {
-                    ...item,
-                    quatity: item.quatity - 1,
-                };
-            }
-            return item;
-        });
-        const filter = update.filter((item) => item.quatity !== 0);
-        setCart(filter);
-    };
-    const handleRemove = (id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Do you want to remove this item?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, delete it!",
-            cancelButtonText: "No",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                const remove = cart.filter((item) => item.id !== id);
-                setCart(remove);
+    dispatch(
+      applyCoupon(coupon, Totalprice)
+    );
+  };
 
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Item removed successfully",
-                    icon: "success",
-                    timer: 1500,
-                    showConfirmButton: false,
-                });
-            } else {
-                Swal.fire({
-                    title: "Cancelled",
-                    text: "Item is safe 🙂",
-                    icon: "info",
-                    timer: 1500,
-                    showConfirmButton: false,
-                });
-            }
-        });
+  return {
 
+    // state
+    cart: state.cart,
+    filterData: state.filterData,
+    offerPrice: state.offerPrice,
+    activeCoupon: state.activeCoupon,
 
-    };
-    const handleSearch = (e) => {
-        const serachItem = products.filter((item) => item.title.toLowerCase().includes(e.toLowerCase()))
-        // console.log(serachItem)
-        setFilterData(serachItem)
+    // handlers
+    handleAdd,
 
-    }
-    const handleItem = (value) => {
-        if (value === "all") {
-            setFilterData(products)
-            return;
-        }
-        const filterize = products.filter((item) => item.type === value)
+    handleIncrement: (id) =>
+      dispatch(increment(id)),
 
-        setFilterData(filterize)
-    }
-    const handlePrice = (value) => {
-        if (value === "all") {
-            setFilterData(products)
-        }
-        const storeData = [...filterData]//(.sort) modifies original data so that i make a copy of original data because of i do not need to modifies original data
+    handleDecrement: (id) =>
+      dispatch(decrement(id)),
 
-        if (value === "lowToHigh") {
-            storeData.sort((a, b) => a.price - b.price)
-        }
-        if (value === "highToLow") {
-            storeData.sort((a, b) => b.price - a.price)
-        }
-        setFilterData(storeData)
-    }
+    handleRemove,
 
-    const Totalprice = cart.reduce((total, item) => {
-        return total + item.price * item.quatity
-    }, 0)
-    const handleDiscount = (e) => {
-        // console.log("e", e)
+    handleSearch: (value) =>
+      dispatch(search(value)),
 
-        if (e == 10) {
-            const FinalPrice = (Totalprice * e) / 100
-            setOfferPrice(FinalPrice)
-            setActiveCoupon(e);
-        }
-        if (e == 20) {
-            const FinalPrice = (Totalprice * e) / 100
-            setOfferPrice(FinalPrice)
-            setActiveCoupon(e);
-        }
-        if (e == 30) {
-            const FinalPrice = (Totalprice * e) / 100
-            setOfferPrice(FinalPrice)
-            setActiveCoupon(e);
-        }
+    handleItem: (value) =>
+      dispatch(filterType(value)),
 
-    }
-    // console.log(offerPrice)
-    const PayBleAmount = Totalprice - offerPrice
-    // console.log("PayBleAmount",PayBleAmount)
+    handlePrice: (value) =>
+      dispatch(sortPrice(value)),
 
+    handleDiscount,
 
-    const totalItems = cart.reduce((acc, item) => acc + item.quatity, 0)
-    return { cart, handleAdd, handleIncrement, handleDecrement, handleRemove, Totalprice, handleSearch, handleItem, filterData, totalItems, handlePrice, handleDiscount, offerPrice, PayBleAmount, activeCoupon }
-}
-
+    // calculated values
+    Totalprice,
+    totalItems,
+    PayBleAmount,
+  };
+};

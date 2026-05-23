@@ -78,7 +78,7 @@ const CartPage = () => {
                           -
                         </button>
 
-                        <span className="qty-value">{item.quatity}</span>
+                        <span className="qty-value">{item.quantity}</span>
 
                         <button
                           className="qty-btn"
@@ -89,7 +89,7 @@ const CartPage = () => {
                       </div>
 
                       <h2 className="item-price">
-                        ₹{item.price * item.quatity}
+                        ₹{item.price * item.quantity}
                       </h2>
 
                       <button
@@ -108,7 +108,7 @@ const CartPage = () => {
             </button>{" "}
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* Order Summery */}
 
           <div
             className={`summary-section ${
